@@ -5,8 +5,8 @@
 <title>Grid Design</title>
 <link rel='stylesheet' type='text/css' href='dhtmlx.css' />
 <!--<script src='dhtmlxdataprocessor_debug.js'></script>-->
-<script src='dhtmlx.js'></script>
-<style>
+<script type="text/javascript" src='dhtmlx.js'></script>
+<style type="text/css">
 @charset "UTF-8";
 html, body {
    width: 100%;
@@ -151,11 +151,17 @@ dhtmlxEvent(window,'load',function() {
 	}) // end of onAfterUpdate event
 	mySqlGrid.attachEvent('onRowSelect', function(id,ind) {
 		myFieldsLoadStatement = "codebase/xml/myConnFields.php?connector=true&dhx_filter[1]="+id;
-		myFieldsGrid.clearAndLoad( myFieldsLoadStatement );
+		myFieldsGrid.clearAndLoad(myFieldsLoadStatement);
 	})  // end of onRowSelect event
 	mySqlGridDP.init( mySqlGrid );
 	mySqlLoadStatement = 'codebase/xml/myConnSql.php';
 	mySqlGrid.load(mySqlLoadStatement, function() {
+		if((mySqlGrid.getRowsNum())!=0) {
+			myRowID = mySqlGrid.getRowId(0);
+			mySqlID = mySqlGrid.cells(myRowID,0).getValue();
+			myFieldsLoadStatement = "codebase/xml/myConnFields.php?connector=true&dhx_filter[1]="+mySqlID;
+			myFieldsGrid.clearAndLoad(myFieldsLoadStatement);
+		};
 	}) //  end of load
 
 	myFieldsGrid = myMainLayout.cells('b').attachGrid();
