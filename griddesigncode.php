@@ -1,5 +1,4 @@
 <?php
-require_once 'session.php';
 require_once 'codebase/db_connectmysqli.php';
 if(!isset($_GET['sqlID'])) {
 	die("sqlID value not set");
