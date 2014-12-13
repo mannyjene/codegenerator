@@ -1,4 +1,5 @@
 <?php
+require_once 'session.php';
 require_once 'codebase/db_connectmysqli.php';
 if(!isset($_GET['sqlID'])) {
 	die("sqlID value not set");
@@ -298,9 +299,7 @@ $outputPhpCode.= "<meta http-equiv='Content-Type' content='text/html; charset=UT
 $outputPhpCode.= "<title>ESLI ag_$esliFormOrGridName</title>\n";
 $outputPhpCode.= "<link rel='stylesheet' type='text/css' href='dhtmlx.css' />\n";
 $outputPhpCode.= "<link rel='stylesheet' type='text/css' href='esli.css' />\n";
-$outputPhpCode.= "<!--<script src='dhtmlxdataprocessor_debug.js'></script>-->\n";
-$outputPhpCode.= "<script src='dhtmlx.js'></script>\n";
-$outputPhpCode.= "<script src='numeral.js'></script>\n";
+$outputPhpCode.= "<script type='text/javascript' src='dhtmlx.js'></script>\n";
 $outputPhpCode.= "<style>\n";
 $outputPhpCode.= "</style>\n";
 $outputPhpCode.= "<script type='text/javascript'>\n";
@@ -453,10 +452,9 @@ fclose($file);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo "ESLI Generated Grid - $esliFormOrGridName : $esliSqlStatement"; ?></title>
+<title><?php echo "Generated Grid - $esliFormOrGridName : $esliSqlStatement"; ?></title>
 <link rel="stylesheet" type="text/css" href="dhtmlx.css" />
 <link rel="stylesheet" type="text/css" href="esli.css" />
-<!--<script src="dhtmlxdataprocessor_debug.js"></script>-->
 <script src="dhtmlx.js"></script>
 <script src="numeral.js"></script>
 <style>

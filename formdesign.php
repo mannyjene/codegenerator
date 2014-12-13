@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Form Design / DHTMLX</title>
 <link rel="stylesheet" type="text/css" href="dhtmlx.css" />
-<script src="dhtmlx.js"></script>
-<style>
+<script type="text/javascript" src="dhtmlx.js"></script>
+<style type="text/css">
 @charset "UTF-8";
 html, body {
    width: 100%;
@@ -156,6 +156,12 @@ dhtmlxEvent(window,"load",function() {
 	mySqlGridDP.init( mySqlGrid );
 	mySqlLoadStatement = "codebase/xml/myConnSqlForm.php";
 	mySqlGrid.loadXML(mySqlLoadStatement, function() {
+		if((mySqlGrid.getRowsNum())!=0) {
+			myRowID = mySqlGrid.getRowId(0);
+			mySqlID = mySqlGrid.cells(myRowID,0).getValue();
+			myFieldsLoadStatement = "codebase/xml/myConnFieldsForm.php?connector=true&dhx_filter[1]="+mySqlID;
+			myFieldsGrid.clearAndLoad(myFieldsLoadStatement);
+		};
 	}) //  end of load 
 
     myFieldsGrid = myMainLayout.cells("b").attachGrid();
